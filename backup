@@ -1,0 +1,16 @@
+import git 
+
+REMOTE_URL="https://github.com/gilad207/test.git"
+
+repo = git.Repo.init("TEST")
+origin = repo.create_remote('origin',REMOTE_URL)
+origin.fetch()  
+repo.create_head('master', origin.refs.master)
+repo.heads.master.set_tracking_branch(origin.refs.master) 
+repo.heads.master.checkout()
+origin.pull()
+
+new_branch = repo.create_head('feature')
+repo.head.reference = new_branch
+origin.push
+print "a"
