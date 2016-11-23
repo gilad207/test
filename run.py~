@@ -1,0 +1,15 @@
+import git , shutil
+shutil.rmtree('/home/boazt/gilad/client')
+REMOTE_URL="~/gilad/server/.git"
+repo = git.Repo.init("client")
+repo.git.remote('add','origin',REMOTE_URL)
+#origin = repo.create_remote('origin',REMOTE_URL)
+#repo.git.fetch('origin')
+#repo.create_head('master', origin.refs.master)
+#repo.heads.master.set_tracking_branch(origin.refs.master) 
+#repo.git.checkout('master')
+repo.git.pull('origin','master')
+repo.git.branch('new')
+repo.git.push('--set-upstream', 'origin', 'new')
+repo.git.branch('--delete', 'new')
+repo.git.fetch('origin','new:new')
